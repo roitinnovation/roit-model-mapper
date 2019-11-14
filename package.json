@@ -1,0 +1,39 @@
+{
+  "name": "@roit/roit-model-mapper",
+  "version": "0.0.2",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "repository": "github:roitinnovation/roit-model-mapper",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "npm run build && npm test && npm publish --access public --scope=roit",
+    "test": "mocha --timeout 15000 -r ts-node/register test/**/*.spec.ts"
+  },
+  "author": "ROIT",
+  "devDependencies": {
+    "@types/express": "^4.0.33",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.46",
+    "typescript": "^2.9.2",
+    "ts-node": "^8.3.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "normalize-html-whitespace": "^1.0.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "keywords": [
+    "typescript model mapper",
+    "express model mapper",
+    "typescript model convert",
+    "json-mapper",
+    "typescript-json",
+    "json-adapter",
+    "json-transformer",
+    "api-mapper",
+    "api-adapter"
+  ]
+}

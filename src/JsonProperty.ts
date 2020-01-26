@@ -11,7 +11,8 @@ export function JsonProperty<T>(metadata?: IJsonMetaData<T> | string): any {
         return Reflect.metadata(jsonMetadataKey, {
             name: metadataObj ? metadataObj.name : undefined,
             clazz: metadataObj ? metadataObj.clazz : undefined,
-            linear: metadataObj ? metadataObj.linear : false
+            linear: metadataObj ? metadataObj.linear : false,
+            alwaysArray: metadataObj ? metadataObj.alwaysArray : false
         });
     }
 }
@@ -19,5 +20,6 @@ export function JsonProperty<T>(metadata?: IJsonMetaData<T> | string): any {
 export interface IJsonMetaData<T> {
     name?: string,
     clazz?: { new(): T },
-    linear?: boolean
+    linear?: boolean,
+    alwaysArray?: boolean
 }

@@ -20,8 +20,6 @@ describe('Model mapper tests', () => {
 
         const company = ModelMapper.deserialize(Company, anyCompany)
 
-        console.log(company)
-
         expect(company).exist
         expect(company.name).to.equal("Company 1 SM inc")
         expect(company.identity).to.equal("58.413.609/0001-72")
@@ -182,6 +180,56 @@ describe('Model mapper tests', () => {
         expect(company).exist
         expect(company.name).to.equal("Company 1 SM inc")
         expect(company.address.streetAddress).to.equal("R Argentina")
+
+    });
+
+
+    it('Default value Test', async () => {
+
+        const company = ModelMapper.deserialize(Company, undefined, { defaultValue: new Array })
+        expect(company).exist
+       
+
+    });
+
+    it('Always array', async () => {
+
+        let anyCompany = {
+            name: "Company 1 SM inc",
+            identity: "58.413.609/0001-72",
+            address: {
+                streetAddress: 'R Argentina',
+                city: 'Curitiba',
+                country: 'Brasil'
+            },
+            address2: {
+                streetAddress: 'R Argentina',
+                city: 'Curitiba',
+                country: 'Brasil'
+            },
+
+            address3: [
+                {
+                    streetAddress: 'R Argentina',
+                    city: 'Curitiba',
+                    country: 'Brasil'
+                },
+                {
+                    streetAddress: 'R Argentina',
+                    city: 'Curitiba',
+                    country: 'Brasil'
+                }
+            ]
+        }
+
+        const company = ModelMapper.deserialize(Company, anyCompany, { ignoreJsonPropertyName: true })
+
+        expect(company).exist
+        expect(company.name).to.equal("Company 1 SM inc")
+        expect(company.address.streetAddress).to.equal("R Argentina")
+        expect(company.address2.length).to.equal(1)
+        expect(company.address3.length).to.equal(2)
+        expect(company.address4.length).to.equal(0)
 
     });
 

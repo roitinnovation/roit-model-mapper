@@ -16,6 +16,10 @@ export class ModelMapper {
     }
 
     static deserialize<T>(clazz: { new(): T }, jsonObject: any, optionsMapper?: ObjectMapperOptions) {
-        return MapperHandle.deserialize(clazz, jsonObject, optionsMapper)
+        const result = MapperHandle.deserialize(clazz, jsonObject, optionsMapper)
+        if(!result && optionsMapper && optionsMapper.defaultValue) {
+            return optionsMapper.defaultValue
+        }
+        return result
     }
 }

@@ -36,7 +36,15 @@ export class MapperHandle {
                 innerJson = jsonObject ? jsonObject[this.getKey(propertyName, optionsMapper)] : undefined;
                 let clazz = this.getClazz(obj, key);
                 if(propertyMetadata.clazz) {
-                    return this.deserialize(propertyMetadata.clazz, propertyMetadata.linear ? jsonObject : innerJson, optionsMapper);
+                    let objectTarget = propertyMetadata.linear ? jsonObject : innerJson
+                    if(propertyMetadata.alwaysArray) {
+                        if(objectTarget) {
+                            objectTarget = Array.isArray(objectTarget) ? objectTarget : [ objectTarget ]
+                        } else {
+                            objectTarget = []
+                        }
+                    }
+                    return this.deserialize(propertyMetadata.clazz, objectTarget , optionsMapper);
                 } else if (!this.isPrimitive(clazz) && !propertyMetadata.name) {
                     return this.deserialize(clazz, innerJson, optionsMapper);
                 } else {
@@ -53,6 +61,7 @@ export class MapperHandle {
                 }
             }
         });
+
         return obj;
     }
 

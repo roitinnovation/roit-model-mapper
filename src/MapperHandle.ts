@@ -36,7 +36,7 @@ export class MapperHandle {
                 innerJson = jsonObject ? jsonObject[this.getKey(propertyName, optionsMapper)] : undefined;
                 let clazz = this.getClazz(obj, key);
                 if(propertyMetadata.clazz) {
-                    let objectTarget = propertyMetadata.linear ? jsonObject : innerJson
+                    let objectTarget = propertyMetadata.linear && !optionsMapper.ignoreLinear ? jsonObject : innerJson
                     if(propertyMetadata.alwaysArray) {
                         if(objectTarget) {
                             objectTarget = Array.isArray(objectTarget) ? objectTarget : [ objectTarget ]

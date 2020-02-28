@@ -8,5 +8,7 @@ export class ObjectMapperOptions {
 
     ignoreJsonPropertyName?: boolean = false
 
+    ignoreLinear?: boolean = false
+
     defaultValue?: any
 }

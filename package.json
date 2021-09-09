@@ -1,6 +1,6 @@
 {
   "name": "@roit/roit-model-mapper",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "repository": "github:roitinnovation/roit-model-mapper",
